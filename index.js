@@ -16,8 +16,12 @@ module.exports = function autoFishing(mod) {
 	let config;
     try {
         config = require('./config.json');
+		if(!config.delay>0){
+			config.delay=2000;
+		}
     } catch (error) {
         config = {};
+		config.delay=2000;
     }
 	
 	
@@ -40,7 +44,7 @@ module.exports = function autoFishing(mod) {
 		if(enabled&&mod.game.me.is(event.gameId)){
 			setTimeout(() => {
 				mod.send('C_END_FISHING_MINIGAME',1,{success:true});
-			},2000+event.level*50);
+			},config.delay+event.level*50);
 		}
 	})
 	mod.hook('S_FISHING_CATCH', 1, event => {
@@ -286,6 +290,15 @@ module.exports = function autoFishing(mod) {
 					config.recipe=lastRecipe;
 				}else{
 					mod.command.message(`Incorrect item id`);
+				}
+			break;
+			case 'setdelay':
+				var delay=parseInt(link);
+				if (delay>0) {
+					config.delay=delay;
+					mod.command.message(`Delay for minigame set to: ${link}`);
+				}else{
+					mod.command.message(`Incorrect value`);
 				}
 			break;
 			case 'test':
