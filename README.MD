@@ -10,3 +10,4 @@ Commands:<br>
 You can manually edit config file, because im lazy<br>
 Tera proxy mod for fishing.<br>
 Move defs to node_modules\tera-data\protocol.<br>
+Repo contains opcodes only for RU. Use [Find packet id](https://github.com/Owyn/alex-packet-id-finder) and loggers<br>
