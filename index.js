@@ -28,7 +28,7 @@ module.exports = function autoFishing(mod) {
 			rodId=event.rodId;
 		}
 	})*/
-	mod.hook('S_START_FISHING_CHARGE', 1, event => {
+	mod.hook('S_FISHING_BITE', 1, event => {
 		if(enabled&&mod.game.me.is(event.gameId)){
 			rodId=event.rodId;
 			setTimeout(() => {
@@ -92,10 +92,14 @@ module.exports = function autoFishing(mod) {
 	});
 	mod.hook('S_INVEN', 16,{order:-1000}, event => {
 		if(enabled&&config.items!==undefined&&event.items.length>0){
-			let positiveArr = event.items.filter(function(obj) {
-				return obj.dbid!=0&&config.items.includes(obj.id);
+			event.items.forEach(function(obj) {
+				if(config.items.includes(obj.id)){
+					let index = invitems.findIndex(x => x.dbid==obj.dbid);
+					if (index == -1&&obj.dbid!=0){
+						invitems.push(obj);
+					}
+				}
 			});
-			invitems=positiveArr;
 		}
 	});
 	mod.hook('S_SYSTEM_MESSAGE_LOOT_ITEM', 1, event => {
@@ -246,6 +250,7 @@ module.exports = function autoFishing(mod) {
 				}else{
 					mod.command.message(`Incorrect item id`);
 				}
+				
 			break;
 			case 'remove':
 				if(config.items===undefined||config.items==null)

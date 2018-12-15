@@ -1,6 +1,6 @@
 {
 	"files": {
-		"index.js": "42aca708b636fc78459eef99fc83d983e2306f3c4f4ba8273d5aa14d3556a304",
+		"index.js": "558f251993c6686c7f01d239746025c8ecfe78068db5213107e606524fbf0caa",
 		"module.json": "c171c12d903bffa6b7332d09d82ab40ac3423b0bf0d5f4f731dfe77d89674029"
 	},
 	"defs": {
@@ -15,6 +15,7 @@
 		"C_USE_ITEM": 3,
 		"S_CANCEL_CONTRACT": 1,
 		"S_END_PRODUCE": 1,
+		"S_FISHING_BITE": 1,
 		"S_FISHING_CATCH": 1,
 		"S_FISHING_CATCH_FAIL": 1,
 		"S_INVEN": 16,
