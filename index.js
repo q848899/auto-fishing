@@ -81,7 +81,10 @@ module.exports = function autoFishing(mod) {
 		if(enabled&&needToDecompose){
 			decomposeitemscount++;
 			if(invitems.length>0&&decomposeitemscount<=20){
-				processDecompositionItem();
+				setTimeout(() => {
+					processDecompositionItem();
+				}, 50);
+				
 			}else{
 				setTimeout(() => {
 					if(decomposeitemscount>0)
@@ -109,7 +112,7 @@ module.exports = function autoFishing(mod) {
 				if (index == -1){
 					invitems.push({
 						id:event.item,
-						dbid:event.unk2
+						dbid:BigInt(event.unk2)
 					});
 				}
 			}
@@ -134,7 +137,7 @@ module.exports = function autoFishing(mod) {
 	}
 	function processDecompositionItem(){
 		let current=invitems.shift();
-		if(current!=null&&ContractId!=null&&enabled){
+		if(current!=undefined&&ContractId!=null&&enabled){
 			mod.send('C_RQ_ADD_ITEM_TO_DECOMPOSITION_CONTRACT', 1, {
 				contract:ContractId,
 				dbid:current.dbid,
