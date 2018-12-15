@@ -246,7 +246,22 @@ module.exports = function autoFishing(mod) {
 				}else{
 					mod.command.message(`Incorrect item id`);
 				}
-				
+			break;
+			case 'remove':
+				if(config.items===undefined||config.items==null)
+					config.items=[];
+				var tmp=getItemIdChatLink(link);
+				if(tmp!=null){
+					var index=config.items.indexOf(tmp);
+					if(index==-1){
+						mod.command.message(`not exist`);
+					}else{
+						mod.command.message(`Remove item id: ${tmp}`);
+						config.items.splice(index, 1);
+					}
+				}else{
+					mod.command.message(`Incorrect item id`);
+				}
 			break;
 			case 'setbait':
 				var tmp=getItemIdChatLink(link);
