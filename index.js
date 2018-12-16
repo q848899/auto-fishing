@@ -87,7 +87,7 @@ module.exports = function autoFishing(mod) {
 			if(invitems.length>0&&decomposeitemscount<=20){
 				setTimeout(() => {
 					processDecompositionItem();
-				}, 50);
+				}, 150);
 				
 			}else{
 				setTimeout(() => {
